@@ -7,4 +7,7 @@ const User = sequelize.define('User', {
   password: { type: DataTypes.STRING, allowNull: false }
 });
 
+const Project = require('./Project');
+User.hasMany(Project, { foreignKey: 'userId', as: 'projects' });
+
 module.exports = User;
