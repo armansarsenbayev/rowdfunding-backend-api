@@ -5,7 +5,7 @@ require('dotenv').config();
 const User = require('./src/models/User');
 const Project = require('./src/models/Project');
 const RewardTier = require('./src/models/RewardTier'); 
-
+const userRoutes = require('./src/routes/userRoutes');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -22,6 +22,7 @@ app.get('/', (req, res) => {
 
 const projectRoutes = require('./src/routes/projectRoutes');
 app.use('/projects', projectRoutes);
+app.use('/users', userRoutes);
 
 async function startServer() {
   try {

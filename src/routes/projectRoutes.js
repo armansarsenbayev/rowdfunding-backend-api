@@ -13,7 +13,16 @@ router.get('/', async (req, res) => {
 
 router.post('/', async (req, res) => {
   try {
-    const project = await Project.create(req.body);
+    
+    const { title, goal_amount, deadline, userId } = req.body;
+    
+    const project = await Project.create({
+      title,
+      goal_amount,
+      deadline,
+      userId 
+    });
+    
     res.status(201).json(project);
   } catch (error) {
     res.status(400).json({ error: error.message });
