@@ -9,8 +9,6 @@ const RewardTier = sequelize.define('RewardTier', {
   quantity_remaining: { type: DataTypes.INTEGER, allowNull: false }
 });
 
-// Связь: У одного проекта много уровней наград
-Project.hasMany(RewardTier, { foreignKey: 'projectId', as: 'tiers' });
-RewardTier.belongsTo(Project, { foreignKey: 'projectId' });
+
 
 module.exports = RewardTier;

@@ -1,16 +1,15 @@
 const { Sequelize } = require('sequelize'); 
-require('dotenv').config();
 
+// Временно пишем данные напрямую, чтобы обойти глюк с .env
 const sequelize = new Sequelize(
-  process.env.DB_NAME, 
-  process.env.DB_USER, 
-  process.env.DB_PASS, 
+  'crowdfunding_db', // Твое точное название базы из pgAdmin
+  'postgres',        // Имя пользователя (обычно postgres)
+  '1234',     // Твой реальный пароль от базы (в кавычках!)
   {
-    host: process.env.DB_HOST,
+    host: 'localhost',
     dialect: 'postgres',
     logging: false,
   }
 );
-
 
 module.exports = sequelize;

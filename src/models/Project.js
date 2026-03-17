@@ -17,5 +17,4 @@ goal_amount: {
   status: { type: DataTypes.ENUM('active', 'successful', 'failed'), defaultValue: 'active' }
 });
 
-Project.belongsTo(User, { as: 'creator', foreignKey: 'userId' });
 module.exports = Project;

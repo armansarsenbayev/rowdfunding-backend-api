@@ -1,7 +1,11 @@
 const express = require('express');
 const router = express.Router();
 const Project = require('../models/Project');
+const pledgeController = require('../controllers/pledgeController');
+const projectController = require('../controllers/projectController');
 
+// Получить все проекты
+router.get('/', projectController.getAllProjects);
 router.get('/:id', async (req, res) => {
   try {
     const project = await Project.findByPk(req.params.id, {
@@ -32,6 +36,10 @@ router.post('/', async (req, res) => {
   }
 });
 
+// Эндпоинт для подведения итогов проекта
+router.post('/:id/finalize', projectController.finalizeProject);
+// Эндпоинт для добавления наград к проекту
+router.post('/:id/tiers', projectController.addRewardTier);
 
 router.delete('/:id', async (req, res) => {
   try {
@@ -55,5 +63,7 @@ router.put('/:id', async (req, res) => {
     res.status(400).json({ error: error.message });
   }
 });
+
+router.post('/:id/pledges', pledgeController.createPledge);
 
 module.exports = router;
